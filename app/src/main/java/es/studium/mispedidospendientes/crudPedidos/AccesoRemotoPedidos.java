@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.studium.mispedidospendientes.modelos.Pedido;
-import es.studium.mispedidospendientes.modelos.Tienda;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

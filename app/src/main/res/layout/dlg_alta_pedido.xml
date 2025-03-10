@@ -7,8 +7,8 @@
 
     <Spinner
         android:id="@+id/listaTiendas"
-        android:layout_width="339dp"
-        android:layout_height="48dp"
+        android:layout_width="315dp"
+        android:layout_height="51dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,44 +17,50 @@
 
     <EditText
         android:id="@+id/txtFechaEntr"
-        android:layout_width="335dp"
-        android:layout_height="48dp"
+        android:layout_width="306dp"
+        android:layout_height="49dp"
         android:ems="10"
-        android:hint="dd/MM/yyyy"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="@string/hintFechas"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listaTiendas"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0.044"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/txtArt"
-        android:layout_width="338dp"
-        android:layout_height="51dp"
+        android:layout_width="302dp"
+        android:layout_height="56dp"
         android:ems="10"
-        android:hint="Descripción"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="@string/hintDesc"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFechaEntr"
-        app:layout_constraintVertical_bias="0.037" />
+        app:layout_constraintVertical_bias="0.042"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/txtTotal"
-        android:layout_width="338dp"
-        android:layout_height="48dp"
+        android:layout_width="304dp"
+        android:layout_height="56dp"
         android:ems="10"
-        android:hint="Importe"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="@string/hintImporte"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtArt"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintVertical_bias="0.047"
+        tools:ignore="Autofill" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

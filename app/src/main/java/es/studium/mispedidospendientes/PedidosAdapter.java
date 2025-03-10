@@ -13,7 +13,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import es.studium.mispedidospendientes.modelos.Pedido;
-import es.studium.mispedidospendientes.modelos.Tienda;
 
 public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.MyViewHolder>
 {
@@ -30,15 +29,14 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.MyViewHo
     @Override
     public PedidosAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
     {
-        View filaPedido = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fila_pedido,
-                viewGroup, false);
+        View filaPedido = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fila_pedido, viewGroup, false);
         return new PedidosAdapter.MyViewHolder(filaPedido);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PedidosAdapter.MyViewHolder myViewHolder, int i)
     {
-        // Obtener la frase de nuestra lista gracias al índice i
+        // Obtener el pedido de nuestra lista gracias al índice i
         Pedido pedidos = listaDePedidos.get(i);
         // Obtener los datos de la lista
         String nPedido = pedidos.getDescripcion();

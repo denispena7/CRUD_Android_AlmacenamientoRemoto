@@ -8,12 +8,12 @@
     <fragment
         android:id="@+id/nav_pedidos"
         android:name="es.studium.mispedidospendientes.ui.pedidos.PedidosFragment"
-        android:label="@string/menu_home"
+        android:label="@string/menu_pedidos"
         tools:layout="@layout/fragment_pedidos" />
 
     <fragment
         android:id="@+id/nav_tiendas"
         android:name="es.studium.mispedidospendientes.ui.tiendas.TiendasFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_tiendas"
         tools:layout="@layout/fragment_tiendas" />
 </navigation>

@@ -34,10 +34,11 @@ public class DlgAltaTienda extends DialogFragment
 
         nombreTienda = myView.findViewById(R.id.storeName);
 
-        builder.setTitle("Alta Tiendas")
-                .setPositiveButton("Guardar", null) // Creación del botón positivo, sin funcionalidad aún
-                .setNegativeButton("Cancelar", (dialog, which) -> {
-                    Toast.makeText(getContext(), "Alta Cancelada", Toast.LENGTH_SHORT).show();
+        // Funcionalidad de los botones del diálogo
+        builder.setTitle(R.string.dlgAltaTienda)
+                .setPositiveButton(R.string.btnGuardar, null) // Creación del botón positivo, sin funcionalidad aún
+                .setNegativeButton(R.string.btnCancelar, (dialog, which) -> {
+                    Toast.makeText(getContext(), R.string.cancelarAlta, Toast.LENGTH_SHORT).show();
                 });
 
         AlertDialog dialog = builder.create();
@@ -51,7 +52,7 @@ public class DlgAltaTienda extends DialogFragment
                     if (nombreTienda.getText().toString().isEmpty())
                     {
                         // Mostrar mensaje de error si el campo está vacío
-                        Toast.makeText(getActivity(), "Escribe el nombre de una tienda", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.tiendaVacia, Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -60,12 +61,13 @@ public class DlgAltaTienda extends DialogFragment
                         boolean correcta = altaRemotaTiendas.darAlta(nombreTienda.getText().toString());
                         if (correcta)
                         {
+                            // Actualizar la lista de tiendas
                             fragment.cargarDatos();
-                            Toast.makeText(getContext(), "Alta Correcta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.altaCorrecta, Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
-                            Toast.makeText(getContext(), "Error en la Alta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.altaIncorrecta, Toast.LENGTH_SHORT).show();
                         }
 
                         dialog.dismiss();

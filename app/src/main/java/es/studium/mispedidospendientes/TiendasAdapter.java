@@ -25,15 +25,14 @@ public class TiendasAdapter extends RecyclerView.Adapter<TiendasAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
     {
-        View filaTienda = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fila_tienda,
-                viewGroup, false);
+        View filaTienda = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fila_tienda, viewGroup, false);
         return new MyViewHolder(filaTienda);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i)
     {
-        // Obtener la frase de nuestra lista gracias al índice i
+        // Obtener la tienda de nuestra lista gracias al índice i
         Tienda tienda = listaDeTiendas.get(i);
         // Obtener los datos de la lista
         String nTienda = tienda.getNombreTienda();

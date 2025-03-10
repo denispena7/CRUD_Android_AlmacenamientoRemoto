@@ -2,17 +2,76 @@
     <string name="app_name">MisPedidosPendientes</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Pedidos Pendientes</string>
+    <string name="nav_header_subtitle">Menú Principal</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Pedidos</string>
-    <string name="menu_gallery">Tiendas</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <!-- Títulos de los fragmentos -->
+    <string name="menu_pedidos">Pedidos</string>
+    <string name="menu_tiendas">Tiendas</string>
+
+    <!-- Cadenas de los CardView -->
     <string name="txtHintArticulo">Aquí el artículo</string>
     <string name="txtHintTienda">Aquí la tienda</string>
     <string name="txtHintFecha">Aquí la fecha de Entrega</string>
 
+    <!-- Títulos de los diálogos -->
+    <string name="dlgAltaTienda">Alta Tienda</string>
+    <string name="dlgBajaTienda">Baja Tienda</string>
+    <string name="dlgModificacionTienda">Modificación Tienda</string>
+
+    <string name="dlgAltaPedido">Alta Pedido</string>
+    <string name="dlgBajaPedido">Baja Pedido</string>
+    <string name="dlgModificacionPedido">Modificación Pedido</string>
+
+    <!-- Altas de los diálogos -->
+    <string name="dlgAltaArticulo">Alta Articulo</string>
+
+    <!-- Botones de los diálogos -->
+    <string name="btnGuardar">Guardar</string>
+    <string name="btnCancelar">Cancelar</string>
+    <string name="btnEliminar">Sí, eliminar</string>
+
+    <!-- Feedback operaciones -->
+    <string name="altaCorrecta">Alta correcta</string>
+    <string name="altaIncorrecta">Error en el alta</string>
+    <string name="bajaCorrecta">Baja correcta</string>
+    <string name="bajaIncorrecta">Error en la baja</string>
+    <string name="modificacionCorrecta">Modificación correcta</string>
+    <string name="modificacionIncorrecta">Error en la modificación</string>
+
+    <!-- Cancelaciones -->
+    <string name="cancelarAlta">Alta Cancelada</string>
+    <string name="cancelarBaja">Baja Cancelada</string>
+    <string name="cancelarModificacion">Modificación Cancelada</string>
+
+    <!-- Validaciones -->
+    <string name="tiendaVacia">Escribe una tienda</string>
+    <string name="fechaVacia">Falta la fecha</string>
+    <string name="articuloVacio">Falta el artículo</string>
+    <string name="importeVacio">Falta el importe</string>
+    <string name="camposVacios">Cumplimenta los campos</string>
+
+    <string name="fechaIncorrecta">Fecha incorrecta</string>
+
+    <!-- Preguntas de diálogos de baja -->
     <string name="pregunta">¿Estás seguro de eliminar la tienda %s?</string>
+    <string name="pregunta2">¿Estás seguro de eliminar el pedido %s?</string>
+
+    <!-- Hints -->
+    <string name="hintFechas">dd/MM/yyyy</string>
+    <string name="hintDesc">Descripción</string>
+    <string name="hintImporte">Importe</string>
+
+    <string name="hintNuevaTienda">Nueva Tienda</string>
+    <string name="hintNuevoArticulo">Nuevo Artículo</string>
+    <string name="hintNuevoImporte">Nuevo Importe</string>
+
+    <!-- Estado del pedido -->
+    <string name="estado">RECIBIDO</string>
+
+    <!-- Descripción de imágenes -->
+    <string name="imgCarrito">Carrito</string>
+    <string name="imgTienda">Tienda</string>
 </resources>

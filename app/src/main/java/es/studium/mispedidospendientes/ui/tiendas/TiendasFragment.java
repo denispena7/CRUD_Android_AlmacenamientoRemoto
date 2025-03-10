@@ -44,6 +44,7 @@ public class TiendasFragment extends Fragment implements View.OnClickListener
             {
                 Tienda tiendaSeleccionada = listaTiendas.get(position);
                 // Acción al hacer click en un elemento de la lista
+                // Mostrar diálogo de modificación
                 DlgEdicionTienda dlgEdicion = new DlgEdicionTienda(TiendasFragment.this, tiendaSeleccionada.getId(), tiendaSeleccionada.getNombreTienda());
                 dlgEdicion.setCancelable(false);
                 dlgEdicion.show(getParentFragmentManager(), "Edicion Tiendas");
@@ -55,12 +56,12 @@ public class TiendasFragment extends Fragment implements View.OnClickListener
                 // Acción al hacer un long-click en un elemento
                 Tienda tiendaSeleccionada = listaTiendas.get(position);
                 // Acción al hacer click en un elemento de la lista
+                // Mostrar diálogo de bajas
                 DlgBajaTienda dlgBaja = new DlgBajaTienda(TiendasFragment.this, tiendaSeleccionada.getId(), tiendaSeleccionada.getNombreTienda());
                 dlgBaja.setCancelable(false);
                 dlgBaja.show(getParentFragmentManager(), "Baja Tiendas");
             }
         }));
-
 
         floatingActionButton = root.findViewById(R.id.floatingActionButtonTiendas);
         floatingActionButton.setOnClickListener(this);
@@ -77,13 +78,16 @@ public class TiendasFragment extends Fragment implements View.OnClickListener
         return root;
     }
 
-    public void cargarDatos() {
+    // Función para rellenar/actualizar listado de tiendas
+    public void cargarDatos()
+    {
         AccesoRemotoTiendas accesoRemotoTiendas = new AccesoRemotoTiendas();
-        listaTiendas = accesoRemotoTiendas.obtenerTiendas(); // Debes crear este método en AccesoRemoto
+        listaTiendas = accesoRemotoTiendas.obtenerTiendas();
         adapter = new TiendasAdapter(listaTiendas);
         recyclerView.setAdapter(adapter);
     }
 
+    // Al hacer clic en el floating button, se muestra el diálogo de altas
     @Override
     public void onClick(View view)
     {

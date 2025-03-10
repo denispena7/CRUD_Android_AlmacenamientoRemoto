@@ -5,11 +5,9 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,19 +18,11 @@ import java.util.List;
 import es.studium.mispedidospendientes.PedidosAdapter;
 import es.studium.mispedidospendientes.R;
 import es.studium.mispedidospendientes.RecyclerTouchListener;
-import es.studium.mispedidospendientes.TiendasAdapter;
 import es.studium.mispedidospendientes.crudPedidos.AccesoRemotoPedidos;
-import es.studium.mispedidospendientes.crudTiendas.AccesoRemotoTiendas;
-import es.studium.mispedidospendientes.databinding.FragmentPedidosBinding;
 import es.studium.mispedidospendientes.modelos.Pedido;
-import es.studium.mispedidospendientes.modelos.Tienda;
-import es.studium.mispedidospendientes.ui.tiendas.DlgAltaTienda;
-import es.studium.mispedidospendientes.ui.tiendas.DlgBajaTienda;
-import es.studium.mispedidospendientes.ui.tiendas.DlgEdicionTienda;
-import es.studium.mispedidospendientes.ui.tiendas.TiendasFragment;
 
-public class PedidosFragment extends Fragment implements View.OnClickListener {
-
+public class PedidosFragment extends Fragment implements View.OnClickListener
+{
     private RecyclerView recyclerViewPedidos;
     private PedidosAdapter adapter;
     private List<Pedido> listaPedidos;
@@ -54,6 +44,7 @@ public class PedidosFragment extends Fragment implements View.OnClickListener {
             {
                 Pedido pedidoSeleccionado = listaPedidos.get(position);
                 // Acción al hacer click en un elemento de la lista
+                // Se muestra el diálogo de edición
                 DlgEdicionPedido dlgEdicion = new DlgEdicionPedido(PedidosFragment.this, pedidoSeleccionado);
                 dlgEdicion.setCancelable(false);
                 dlgEdicion.show(getParentFragmentManager(), "Edicion Pedidos");
@@ -63,11 +54,12 @@ public class PedidosFragment extends Fragment implements View.OnClickListener {
             public void onLongClick(View view, int position)
             {
                 // Acción al hacer un long-click en un elemento
-              /*  Pedido pedidoSeleccionado = listaPedidos.get(position);
+                Pedido pedidoSeleccionado = listaPedidos.get(position);
                 // Acción al hacer click en un elemento de la lista
-                DlgBajaTienda dlgBaja = new DlgBajaTienda(PedidosFragment.this, pedidoSeleccionado.getId(), pedidoSeleccionado.getNombreTienda());
+                // Se muestra el diálogo de baja
+                DlgBajaPedido dlgBaja = new DlgBajaPedido(PedidosFragment.this, pedidoSeleccionado.getId());
                 dlgBaja.setCancelable(false);
-                dlgBaja.show(getParentFragmentManager(), "Baja Tiendas");*/
+                dlgBaja.show(getParentFragmentManager(), "Baja Pedidos");
             }
         }));
 
@@ -75,7 +67,7 @@ public class PedidosFragment extends Fragment implements View.OnClickListener {
         floatingActionButtonP = root.findViewById(R.id.floatingActionButtonPedidos);
         floatingActionButtonP.setOnClickListener(this);
 
-        // Permitir conexiones de red en el hilo principal (NO recomendado para producción)
+        // Permitir conexiones de red en el hilo principal
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -87,10 +79,11 @@ public class PedidosFragment extends Fragment implements View.OnClickListener {
         return root;
     }
 
+    // Función para cargar los pedidos pendientes en el recycler view
     public void cargarPedidos()
     {
         AccesoRemotoPedidos accesoRemotoPedidos = new AccesoRemotoPedidos();
-        listaPedidos = accesoRemotoPedidos.obtenerPedidos(); // Debes crear este método en AccesoRemoto
+        listaPedidos = accesoRemotoPedidos.obtenerPedidos();
         adapter = new PedidosAdapter(listaPedidos);
         recyclerViewPedidos.setAdapter(adapter);
     }
@@ -101,6 +94,7 @@ public class PedidosFragment extends Fragment implements View.OnClickListener {
         if (view.getId() == R.id.floatingActionButtonPedidos)
         {
             // Lógica para el botón flotante
+            // Aparece el diálogo de altas
             DlgAltaPedido dlgAltaPedidos = new DlgAltaPedido(this);
             dlgAltaPedidos.setCancelable(false);
             dlgAltaPedidos.show(getParentFragmentManager(), "Alta Pedidos");

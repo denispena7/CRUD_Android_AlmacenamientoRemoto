@@ -70,10 +70,10 @@ public class DlgEdicionPedido extends DialogFragment
         // Rellenar el Spinner con las tiendas
         funcionRellenar.cargarTiendas(tiendasEdicion);
 
-        for (int i = 0; i < tiendasEdicion.getCount(); i++)
+      /*  for (int i = 0; i < tiendasEdicion.getCount(); i++)
         {
             Log.d("SpinnerData", "Tienda en posición " + i + ": " + tiendasEdicion.getItemAtPosition(i));
-        }
+        }*/
 
         // Esperar a que el Spinner se llene antes de establecer la selección
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -92,10 +92,11 @@ public class DlgEdicionPedido extends DialogFragment
         impPedido.setText(importePedido.toString());
         estado.setChecked(false);
 
-        builder.setTitle("Modificación Pedidos")
-                .setPositiveButton("Actualizar", null) // Creación del botón positivo, sin funcionalidad aún
-                .setNegativeButton("Cancelar", (dialog, which) -> {
-                    Toast.makeText(getContext(), "Modificación Cancelada", Toast.LENGTH_SHORT).show();
+        // Configuración de los botones
+        builder.setTitle(R.string.dlgModificacionPedido)
+                .setPositiveButton(R.string.btnGuardar, null) // Creación del botón positivo, sin funcionalidad aún
+                .setNegativeButton(R.string.btnCancelar, (dialog, which) -> {
+                    Toast.makeText(getContext(), R.string.cancelarModificacion, Toast.LENGTH_SHORT).show();
                 });
 
         AlertDialog dialog = builder.create();
@@ -106,19 +107,20 @@ public class DlgEdicionPedido extends DialogFragment
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
                 try
                 {
+                    // Validaciones, si los campos están vacíos
                     if ((tiendasEdicion.getSelectedItem().equals("Selecciona una tienda") || fEntrega.getText().toString().isEmpty() || descPedido.getText().toString().isEmpty() || impPedido.getText().toString().isEmpty()))
                     {
                         StringBuilder mensaje = new StringBuilder();
 
-                        if (tiendasEdicion.getSelectedItem() != null && tiendasEdicion.getSelectedItem().equals("Selecciona una tienda")) mensaje.append("Falta Tienda").append("\n");
-                        if (fEntrega.getText().toString().isEmpty()) mensaje.append("Falta Fecha de  Entrega").append("\n");
-                        if (descPedido.getText().toString().isEmpty()) mensaje.append("Falta Artículo").append("\n");
-                        if (impPedido.getText().toString().isEmpty()) mensaje.append("Falta Importe").append("\n");
+                        if (tiendasEdicion.getSelectedItem() != null && tiendasEdicion.getSelectedItem().equals("Selecciona una tienda")) mensaje.append("Elige una tienda").append("\n");
+                        if (fEntrega.getText().toString().isEmpty()) mensaje.append("Falta fecha").append("\n");
+                        if (descPedido.getText().toString().isEmpty()) mensaje.append("Falta artículo").append("\n");
+                        if (impPedido.getText().toString().isEmpty()) mensaje.append("Falta importe").append("\n");
 
                         // Si hay más de un campo vacío, pedir que se rellenen todos los campos
                         if (mensaje.toString().split("\n").length > 1)
                         {
-                            mensaje = new StringBuilder("Cumplimente los campos");
+                            mensaje = new StringBuilder(R.string.camposVacios);
                         }
 
                         Toast.makeText(getContext(), mensaje.toString().trim(), Toast.LENGTH_LONG).show();
@@ -131,6 +133,7 @@ public class DlgEdicionPedido extends DialogFragment
                             ModificacionRemotaPedidos modificacionRemotaPedidos = new ModificacionRemotaPedidos();
                             if(estado.isChecked())
                             {
+                                // Si el checkbox ha sido seleccionado, significa que ya ha sido recibido, por tanto será ocultado de la vista
                                 pedidoActualizar.setEstadoPedido(1);
                                 estado.setChecked(true);
                             }
@@ -139,6 +142,7 @@ public class DlgEdicionPedido extends DialogFragment
                                 pedidoActualizar.setEstadoPedido(0);
                             }
 
+                            // Actualizar atributos del pedido seleccionado
                             pedidoActualizar.setIdTienda(Integer.parseInt(tiendasEdicion.getSelectedItem().toString().split(" ")[0]));
                             pedidoActualizar.setFechaEntrega(LocalDate.parse(funcionRellenar.formatoMySQL(fEntrega.getText().toString())));
                             pedidoActualizar.setDescripcion(descPedido.getText().toString());
@@ -148,19 +152,20 @@ public class DlgEdicionPedido extends DialogFragment
                             boolean correcta = modificacionRemotaPedidos.modificar(pedidoActualizar);
                             if (correcta)
                             {
+                                // Actualizar lista de pedidos
                                 fragment.cargarPedidos();
                                 // Mostrar mensaje de error si el campo está vacío
-                                Toast.makeText(getActivity(), "Modificación correcta", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), R.string.modificacionCorrecta, Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
                             else
                             {
-                                Toast.makeText(getContext(), "Error en la Modificación", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), R.string.modificacionIncorrecta, Toast.LENGTH_SHORT).show();
                             }
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Fecha no válida", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.fechaIncorrecta, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -175,6 +180,7 @@ public class DlgEdicionPedido extends DialogFragment
         return dialog;
     }
 
+    // Función que devuelve el índice de la tienda del pedido seleccionado
     private int obtenerPosicionTienda(String nombreTienda)
     {
         for (int i = 0; i < tiendasEdicion.getCount(); i++) {

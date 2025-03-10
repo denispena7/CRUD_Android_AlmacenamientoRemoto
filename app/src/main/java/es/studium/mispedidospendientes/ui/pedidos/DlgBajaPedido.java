@@ -1,4 +1,4 @@
-package es.studium.mispedidospendientes.ui.tiendas;
+package es.studium.mispedidospendientes.ui.pedidos;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,23 +11,21 @@ import android.widget.Toast;
 import androidx.fragment.app.DialogFragment;
 
 import es.studium.mispedidospendientes.R;
-import es.studium.mispedidospendientes.crudTiendas.BajaRemotaTiendas;
-import es.studium.mispedidospendientes.modelos.Tienda;
+import es.studium.mispedidospendientes.crudPedidos.BajaRemotaPedidos;
+import es.studium.mispedidospendientes.modelos.Pedido;
 
-public class DlgBajaTienda extends DialogFragment
+public class DlgBajaPedido extends DialogFragment
 {
     TextView pregunta;
-    TiendasFragment fragment;
-    Tienda tiendaBorrar;
+    PedidosFragment fragment;
+    Pedido pedidoBorrar;
     long id;
-    String nombre;
 
-    // Constructor que recibe el fragmento y los campos de las tiendas
-    public DlgBajaTienda(TiendasFragment fragment, long id, String nombre)
+    // Constructor que recibe el fragmento
+    public DlgBajaPedido(PedidosFragment fragment, long id)
     {
         this.fragment = fragment;
         this.id = id;
-        this.nombre = nombre;
     }
 
     public Dialog onCreateDialog(Bundle SavedInstanceState)
@@ -36,16 +34,16 @@ public class DlgBajaTienda extends DialogFragment
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View myView = inflater.inflate(R.layout.dlg_baja_tienda, null);
+        View myView = inflater.inflate(R.layout.dlg_baja_pedido, null);
         builder.setView(myView);
 
-        pregunta = myView.findViewById(R.id.lblPregunta);
+        pregunta = myView.findViewById(R.id.lblPreguntaPedidos);
 
-        tiendaBorrar = new Tienda(id, nombre);
-        pregunta.setText(getString(R.string.pregunta, nombre));
+        pedidoBorrar = new Pedido(id);
+        pregunta.setText(getString(R.string.pregunta2, id + ""));
 
-        // Configuración de botones
-        builder.setTitle(R.string.dlgBajaTienda)
+        // Configuración de los botones
+        builder.setTitle(R.string.dlgBajaPedido)
                 .setPositiveButton(R.string.btnEliminar, null) // Creación del botón positivo, sin funcionalidad aún
                 .setNegativeButton(R.string.btnCancelar, (dialog, which) -> {
                     Toast.makeText(getContext(), R.string.cancelarBaja, Toast.LENGTH_SHORT).show();
@@ -59,15 +57,15 @@ public class DlgBajaTienda extends DialogFragment
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
                 try
                 {
-                    BajaRemotaTiendas bajaRemotaTiendas = new BajaRemotaTiendas();
-                    boolean correcta = bajaRemotaTiendas.darBaja(tiendaBorrar.getId());
+                    BajaRemotaPedidos bajaRemotaPedidos = new BajaRemotaPedidos();
+                    boolean correcta = bajaRemotaPedidos.darBaja(pedidoBorrar.getId());
                     if (correcta)
                     {
-                            // Actualizar la lista de tiendas
-                            fragment.cargarDatos();
-                            // Mostrar mensaje de error si el campo está vacío
-                            Toast.makeText(getActivity(), R.string.bajaCorrecta, Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
+                        // Actualizar lista de pedidos
+                        fragment.cargarPedidos();
+                        // Mostrar mensaje de error si el campo está vacío
+                        Toast.makeText(getActivity(), R.string.bajaCorrecta, Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
                     }
                     else
                     {

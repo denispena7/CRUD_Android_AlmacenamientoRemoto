@@ -40,14 +40,14 @@ public class DlgEdicionTienda extends DialogFragment
 
         nombreTienda = myView.findViewById(R.id.newName);
 
-        // Si no está vacío, realizar modificacion
         tiendaActualizar = new Tienda(id, nombre);
         nombreTienda.setText(nombre);
 
-        builder.setTitle("Modificación Tiendas")
-                .setPositiveButton("Guardar", null) // Creación del botón positivo, sin funcionalidad aún
-                .setNegativeButton("Cancelar", (dialog, which) -> {
-                    Toast.makeText(getContext(), "Modificación Cancelada", Toast.LENGTH_SHORT).show();
+        // Configuración de botones
+        builder.setTitle(R.string.dlgModificacionTienda)
+                .setPositiveButton(R.string.btnGuardar, null) // Creación del botón positivo, sin funcionalidad aún
+                .setNegativeButton(R.string.btnCancelar, (dialog, which) -> {
+                    Toast.makeText(getContext(), R.string.cancelarModificacion, Toast.LENGTH_SHORT).show();
                 });
 
         AlertDialog dialog = builder.create();
@@ -61,7 +61,7 @@ public class DlgEdicionTienda extends DialogFragment
                     if (nombreTienda.getText().toString().isEmpty())
                     {
                         // Mostrar mensaje de error si el campo está vacío
-                        Toast.makeText(getActivity(), "Escribe el nombre de una tienda", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.tiendaVacia, Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -72,12 +72,12 @@ public class DlgEdicionTienda extends DialogFragment
                         {
                             fragment.cargarDatos();
                             // Mostrar mensaje de error si el campo está vacío
-                            Toast.makeText(getActivity(), "Modificación correcta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.modificacionCorrecta, Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
                         else
                         {
-                            Toast.makeText(getContext(), "Error en la Modificación", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.modificacionIncorrecta, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

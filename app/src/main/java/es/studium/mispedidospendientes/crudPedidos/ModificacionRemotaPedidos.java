@@ -54,8 +54,6 @@ public class ModificacionRemotaPedidos
         catch (IOException e)
         {
             Log.e("ModificacionRemota", e.getMessage());
-         //   Log.d("FechaFormateada1", fechaFormateada1);
-         //   Log.d("FechaFormateada2", fechaFormateada2);
             correcta = false;
         }
         return correcta;

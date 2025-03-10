@@ -7,8 +7,8 @@
 
     <Spinner
         android:id="@+id/spnTiendasMod"
-        android:layout_width="356dp"
-        android:layout_height="48dp"
+        android:layout_width="303dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
@@ -18,54 +18,61 @@
 
     <EditText
         android:id="@+id/txtNuevaFecha"
-        android:layout_width="347dp"
-        android:layout_height="53dp"
+        android:layout_width="302dp"
+        android:layout_height="56dp"
         android:ems="10"
-        android:hint="dd/MM/yyyy"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="@string/hintFechas"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spnTiendasMod"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintVertical_bias="0.036"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/editTextText"
-        android:layout_width="352dp"
-        android:layout_height="54dp"
+        android:layout_width="302dp"
+        android:layout_height="51dp"
         android:ems="10"
-        android:hint="Nuevo Artículo"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="@string/hintNuevoArticulo"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNuevaFecha"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0.041"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/txtNuevoImporte"
-        android:layout_width="343dp"
-        android:layout_height="48dp"
+        android:layout_width="292dp"
+        android:layout_height="51dp"
         android:ems="10"
-        android:hint="Nuevo Importe"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="@string/hintNuevoImporte"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintVertical_bias="0.041"
+        tools:ignore="Autofill" />
 
     <CheckBox
         android:id="@+id/chkEstadoPedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="RECIBIDO"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/estado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNuevoImporte"
         app:layout_constraintVertical_bias="0.0" />
